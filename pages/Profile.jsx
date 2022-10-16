@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, Image } from "react-native";
 
 import DialogInput from "react-native-dialog-input";
 
@@ -10,9 +10,10 @@ export default function Profile(props) {
   const [hint, setHint] = useState("Name");
 
   //Name, Age, Gender, School, Bio
-  const hints = ["Name", "Age", "Gender", "School", "Bio"];
+  const hints = ["Image", "Name", "Age", "Gender", "School", "Bio"];
   const [profileData, setProfileData] = useState([
     {
+      ImageUrl: "",
       Name: "",
       Age: "",
       Gender: "",
@@ -26,6 +27,7 @@ export default function Profile(props) {
     setDialogVisible(true);
   }
 
+  //Resets all profile Data to blank
   function resetData() {
     for (let key in hints) {
       //console.log(hints[key]);
@@ -33,6 +35,13 @@ export default function Profile(props) {
         return { ...previousState, [hints[key]]: "" };
       });
     }
+    setProfileData((previousState) => {
+      return {
+        ...previousState,
+        ["Image"]:
+          "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg",
+      };
+    });
   }
 
   return (
@@ -58,6 +67,18 @@ export default function Profile(props) {
           setDialogVisible(!dialogVisible);
         }}
       ></DialogInput>
+      <View style={{ padding: 10, alignSelf: "center" }}>
+        <Image
+          style={{ width: 200, height: 200, alignSelf: "center" }}
+          source={{
+            uri: profileData.Image,
+          }}
+        ></Image>
+      </View>
+
+      <TouchableOpacity onPress={() => callDialog("Image")}>
+        <Text>Change Image Url</Text>
+      </TouchableOpacity>
       <Text style={{ fontSize: 30 }}>Name: {profileData.Name}</Text>
       <TouchableOpacity onPress={() => callDialog("Name")}>
         <Text>Edit</Text>
