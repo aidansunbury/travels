@@ -33,51 +33,58 @@ export default function Post() {
 
   return (
     <View>
-      <View style={styles.border}>
-        <DialogInput
-          isDialogVisible={dialogVisible}
-          hintInput={hint}
-          submitInput={(inputText) => {
-            setCommentData((commentData) => ({
-              ...commentData,
-              [inputNumber]: inputText,
-            }));
-            setDialogVisible(!dialogVisible);
-          }}
-          closeDialog={() => {
-            setDialogVisible(!dialogVisible);
-          }}
-        ></DialogInput>
 
-        {/**Location */}
-        <View style={{ borderBottomWidth: 2 }}>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.big}>Start</Text>
-            <Text style={styles.big}> - to - </Text>
-            <Text style={styles.big}>End</Text>
-          </View>
-        </View>
-        {/**Dates*/}
-        <View style={{ flexDirection: "row" }}>
-          <Text style={styles.standard}>Time</Text>
-          <Text style={styles.standard}>- to -</Text>
-          <Text style={styles.standard}>Time</Text>
-        </View>
-        {/**Details */}
-        <View>
-          <Text style={styles.standard}>
-            Come with me to wonderful Davis California!
-          </Text>
-        </View>
+    <View style={styles.border}>
+      
+      <DialogInput
+        isDialogVisible={dialogVisible}
+        hintInput={hint}
+        submitInput={(inputText) => {
+          setCommentData((commentData) => ({
+            ...commentData,
+            [inputNumber]: inputText,
+          }));
+          setDialogVisible(!dialogVisible);
+        }}
+        closeDialog={() => {
+          setDialogVisible(!dialogVisible);
+        }}
+      ></DialogInput>
+    
 
-        <View style={styles.container}>
-          <Card style={styles.comment}>
-            <Text style={styles.standard}>{commentData[0]}</Text>
-            <TouchableOpacity onPress={() => callDialog("Connect Me!")}>
-              <Text style={styles.standard}>Comment</Text>
-            </TouchableOpacity>
-          </Card>
+      {/**Location */}
+      <View style={{ borderBottomWidth: 2 }}>
+        <View style={{ flexDirection: "row"}}>
+          <Text style={styles.big}>Start</Text>
+          <Text style={styles.big}>- to -</Text>
+          <Text style={styles.big}>End</Text>
         </View>
+      </View>
+      {/**Dates*/}
+      <View style={{ flexDirection: "row" }}>
+        <Text style={styles.times}>Time</Text>
+        <Text style={styles.times}>- to -</Text>
+        <Text style={styles.times}>Time</Text>
+      </View>
+      {/**Details */}
+      <View>
+      <Text style= {styles.standard}>
+        Connect With: Name
+      </Text>
+        <Text style={styles.standard}>
+          Come with me to wonderful Davis California!
+        </Text>
+      </View>
+
+      <View style = {styles.container}>
+        <Card style={styles.comment}>
+          <TouchableOpacity onPress={() => callDialog("Connect Me!")}>
+            <Text style= {styles.standard}>Comment</Text>
+          </TouchableOpacity>
+          <Text style={styles.standard}>{commentData[0]}</Text>
+        </Card>
+      </View>
+
 
         {/**More*/}
         <View></View>
@@ -96,12 +103,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "#ecf0f1", // light pink purple
 
+
     borderWidth: 3,
     borderColor: "#7c5295",
   },
 
+ 
+
   comment: {
-    backgroundColor: "#dfc0eb",
+    backgroundColor: '#CDBBDC',
+
     flex: 1,
     padding: 5,
   },
@@ -113,20 +124,40 @@ const styles = StyleSheet.create({
     justifyContent: "top",
     alignItems: "left",
     borderRadius: 10,
-    backgroundColor: "#bca0dc", //light purple
-    borderWidth: 3,
-    borderColor: "#7c5295", //mid dark purple
+
+    
+
+    backgroundColor: '#bca0dc', //light purple
+    borderWidth: 2,
+    borderColor: '#000000', //mid dark purple
     padding: 10,
+    opacity: 0.8,
+    
+
   },
 
   standard: {
+    justifyContent: "top",
     fontSize: 15,
-    padding: 5,
+    paddingRight: 3,
+    padding: 2,
     fontFamily: "Cochin",
   },
 
   big: {
     justifyContent: "center",
     fontSize: 30,
+
+    fontFamily: "Cochin",
+    paddingRight: 7,
+  },
+
+  times: {
+    justifyContent: "center",
+    fontSize: 20,
+    fontFamily: "Cochin",
+    padding: 5,
+    paddingHorizontal: 3,
+
   },
 });
