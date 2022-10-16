@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, TextInput } from "react-native";
-import DatePicker from "react-native-date-picker";
+import { Text, View, TextInput, TouchableOpacity } from "react-native";
 
 export default function NewPost() {
   const [postData, setPostData] = useState({
@@ -78,6 +77,9 @@ export default function NewPost() {
         {postData.DepartureDate} {"\n"}
         {postData.Description} {"\n"}
       </Text>
+      <TouchableOpacity onPress={() => console.log(postData)}>
+        <Text>log</Text>
+      </TouchableOpacity>
     </View>
   );
 }
