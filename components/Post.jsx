@@ -16,7 +16,7 @@ import { Card } from "react-native-paper";
 const DEVICE_WIDTH = Dimensions.get("window").width;
 const DEVICE_HEIGHT = Dimensions.get("window").height;
 
-export default function Post() {
+export default function Post(props) {
   const [dialogVisible, setDialogVisible] = useState(false); // Visible Dialog Box
   const [hint, setHint] = useState("");
   const [inputNumber, setInputNumber] = useState(0);
