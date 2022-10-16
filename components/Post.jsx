@@ -1,25 +1,27 @@
 import React, { useState } from "react";
 
-import { Text, View, Dimensions, StyleSheet, TouchableOpacity, Alert } from "react-native";
-import Constants from 'expo-constants';
+import {
+  Text,
+  View,
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
+import Constants from "expo-constants";
 import DialogInput from "react-native-dialog-input";
 
-import { Card } from 'react-native-paper';
+import { Card } from "react-native-paper";
 
 const DEVICE_WIDTH = Dimensions.get("window").width;
 const DEVICE_HEIGHT = Dimensions.get("window").height;
 
-
-
 export default function Post() {
-  
   const [dialogVisible, setDialogVisible] = useState(false); // Visible Dialog Box
   const [hint, setHint] = useState("");
   const [inputNumber, setInputNumber] = useState(0);
   //Name, Age, Gender, School, Bio
-  const [commentData, setCommentData] = useState([
-    "",
-  ]);
+  const [commentData, setCommentData] = useState([""]);
 
   function callDialog(attribute) {
     setHint(attribute);
@@ -28,9 +30,10 @@ export default function Post() {
     }
     setDialogVisible(true);
   }
-  
+
   return (
     <View>
+
     <View style={styles.border}>
       
       <DialogInput
@@ -82,47 +85,55 @@ export default function Post() {
         </Card>
       </View>
 
-      {/**More*/}
-      <View></View>
-    </View>
+
+        {/**More*/}
+        <View></View>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
+    justifyContent: "center",
     width: DEVICE_WIDTH / 1.2,
 
     flex: 1,
 
     borderRadius: 10,
-    backgroundColor: '#ecf0f1', // light pink purple
+    backgroundColor: "#ecf0f1", // light pink purple
 
-    borderWidth: 2,
-    borderColor: '#000000',
+
+    borderWidth: 3,
+    borderColor: "#7c5295",
   },
+
+ 
 
   comment: {
     backgroundColor: '#CDBBDC',
+
     flex: 1,
     padding: 5,
   },
 
-
   border: {
     width: DEVICE_WIDTH / 1.1,
     height: DEVICE_WIDTH / 1.5,
-    
+
     justifyContent: "top",
     alignItems: "left",
     borderRadius: 10,
+
+    
+
     backgroundColor: '#bca0dc', //light purple
     borderWidth: 2,
     borderColor: '#000000', //mid dark purple
     padding: 10,
     opacity: 0.8,
     
+
   },
 
   standard: {
@@ -136,6 +147,7 @@ const styles = StyleSheet.create({
   big: {
     justifyContent: "center",
     fontSize: 30,
+
     fontFamily: "Cochin",
     paddingRight: 7,
   },
@@ -146,6 +158,6 @@ const styles = StyleSheet.create({
     fontFamily: "Cochin",
     padding: 5,
     paddingHorizontal: 3,
-  },
 
+  },
 });

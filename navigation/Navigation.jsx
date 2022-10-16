@@ -37,7 +37,13 @@ const Tab = createBottomTabNavigator();
 
 function TabNavigation() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "purple",
+        },
+      }}
+    >
       <Tab.Screen
         name="Feed"
         component={Feed}
