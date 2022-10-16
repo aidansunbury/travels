@@ -5,38 +5,34 @@ import DialogInput from "react-native-dialog-input";
 
 export default function Profile(props) {
   const [dialogVisible, setDialogVisible] = useState(false); // Visible Dialog Box
-  const [hint, setHint] = useState("");
-  const [inputNumber, setInputNumber] = useState(0);
+
+  //Hint tells the user what to input
+  const [hint, setHint] = useState("Name");
+
   //Name, Age, Gender, School, Bio
+  const hints = ["Name", "Age", "Gender", "School", "Bio"];
   const [profileData, setProfileData] = useState([
-    "Not set",
-    "Not set",
-    "Not set",
-    "Not set",
-    "Not set",
+    {
+      Name: "",
+      Age: "",
+      Gender: "",
+      School: "",
+      Bio: "",
+    },
   ]);
 
-  /**
-   * 
-   * setModalVisible((modalVisible: any[]) => ({
-    ...modalVisible,
-    [modalNumber]: !modalVisible[modalNumber],
-  }));
-   */
   function callDialog(attribute) {
     setHint(attribute);
-    if (attribute == "Name") {
-      setInputNumber(0);
-    } else if (attribute == "Age") {
-      setInputNumber(1);
-    } else if (attribute == "Gender") {
-      setInputNumber(2);
-    } else if (attribute == "School") {
-      setInputNumber(3);
-    } else if (attribute == "Bio") {
-      setInputNumber(4);
-    }
     setDialogVisible(true);
+  }
+
+  function resetData() {
+    for (let key in hints) {
+      //console.log(hints[key]);
+      setProfileData((previousState) => {
+        return { ...previousState, [hints[key]]: "" };
+      });
+    }
   }
 
   return (
@@ -52,38 +48,39 @@ export default function Profile(props) {
         isDialogVisible={dialogVisible}
         hintInput={hint}
         submitInput={(inputText) => {
-          setProfileData((profileData) => ({
-            ...profileData,
-            [inputNumber]: inputText,
-          }));
+          setProfileData((previousState) => {
+            return { ...previousState, [hint]: inputText };
+          });
+
           setDialogVisible(!dialogVisible);
         }}
         closeDialog={() => {
           setDialogVisible(!dialogVisible);
         }}
       ></DialogInput>
-
-      
-      <Text style={{ fontSize: 30 }}>Name: {profileData[0]}</Text>
+      <Text style={{ fontSize: 30 }}>Name: {profileData.Name}</Text>
       <TouchableOpacity onPress={() => callDialog("Name")}>
         <Text>Edit</Text>
       </TouchableOpacity>
-      <Text style={{ fontSize: 30 }}>Age: {profileData[1]}</Text>
+      <Text style={{ fontSize: 30 }}>Age: {profileData.Age}</Text>
       <TouchableOpacity onPress={() => callDialog("Age")}>
         <Text>Edit</Text>
       </TouchableOpacity>
-      <Text style={{ fontSize: 30 }}>Gender: {profileData[2]}</Text>
+      <Text style={{ fontSize: 30 }}>Gender: {profileData.Gender}</Text>
       <TouchableOpacity onPress={() => callDialog("Gender")}>
         <Text>Edit</Text>
       </TouchableOpacity>
-      <Text style={{ fontSize: 30 }}>School: {profileData[3]}</Text>
+      <Text style={{ fontSize: 30 }}>School: {profileData.School}</Text>
       <TouchableOpacity onPress={() => callDialog("School")}>
         <Text>Edit</Text>
       </TouchableOpacity>
-      <Text style={{ fontSize: 20 }}>Bio: {profileData[4]}</Text>
+      <Text style={{ fontSize: 30 }}>Bio: {profileData.Bio}</Text>
 
       <TouchableOpacity onPress={() => callDialog("Bio")}>
         <Text>Edit</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => resetData()}>
+        <Text>{"\n"}Clear</Text>
       </TouchableOpacity>
     </View>
   );
