@@ -62,6 +62,8 @@ export default function Profile(props) {
           setDialogVisible(!dialogVisible);
         }}
       ></DialogInput>
+
+      
       <Text style={{ fontSize: 30 }}>Name: {profileData[0]}</Text>
       <TouchableOpacity onPress={() => callDialog("Name")}>
         <Text>Edit</Text>
